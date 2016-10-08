@@ -70,6 +70,7 @@
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\EnemyProjectileSpawnZone.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\MoveToLocation.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\PrefabFactory.cs" />
+    <Compile Include="Assets\BattlemageVR\Resources\Scripts\SpawnZone.cs" />
     <Compile Include="Assets\BattlemageVR\Scripts\Player\Health.cs" />
     <Compile Include="Assets\BattlemageVR\Scripts\Player\Mana.cs" />
     <Compile Include="Assets\BattlemageVR\Scripts\Player\MeleeWeapon.cs" />

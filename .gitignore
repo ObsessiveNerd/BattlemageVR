@@ -1,6 +1,5 @@
 [Ll]ibrary/
 *.pdb
-*.meta
 Temp/
 .vs/
 BattlemageVR.exe
