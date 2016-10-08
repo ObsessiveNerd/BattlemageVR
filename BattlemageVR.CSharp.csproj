@@ -66,6 +66,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BattlemageVR\Resources\Scripts\DespawnAtLocation.cs" />
+    <Compile Include="Assets\BattlemageVR\Resources\Scripts\EnemyProjectileSpawnZone.cs" />
+    <Compile Include="Assets\BattlemageVR\Resources\Scripts\MoveToLocation.cs" />
+    <Compile Include="Assets\BattlemageVR\Resources\Scripts\PrefabFactory.cs" />
     <Compile Include="Assets\BattlemageVR\Scripts\Player\Health.cs" />
     <Compile Include="Assets\BattlemageVR\Scripts\Player\Mana.cs" />
     <Compile Include="Assets\BattlemageVR\Scripts\Player\MeleeWeapon.cs" />
