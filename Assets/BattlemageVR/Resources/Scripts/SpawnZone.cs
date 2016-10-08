@@ -1,22 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class EnemyProjectileSpawnZone : MonoBehaviour
+public class SpawnZone : MonoBehaviour
 {
     public float SpawnRateInSeconds = 1;
+    public GameObject SpawnObject;
 
     private float _lastSpawnTime = 0;
 
-	// Update is called once per frame
-	void Update () {
-	    if(Time.time - _lastSpawnTime > SpawnRateInSeconds)
+    // Update is called once per frame
+    void Update()
+    {
+        if (Time.time - _lastSpawnTime > SpawnRateInSeconds)
         {
             _lastSpawnTime = Time.time;
-            SpawnRandomProjectile();
+            SpawnRandom();
         }
-	}
+    }
 
-    private void SpawnRandomProjectile()
+    private void SpawnRandom()
     {
         var t = transform;
         var extent = t.localScale / 2;
@@ -27,28 +28,14 @@ public class EnemyProjectileSpawnZone : MonoBehaviour
             RandRange(topForwardRight.y, bottomBackLeft.y),
             RandRange(topForwardRight.z, bottomBackLeft.z));
 
-        var projectile = CreateProjectile(randPosition, new Vector3(0, 1, 0));
-        projectile.transform.SetParent(transform, true);
-    }
-
-    private static GameObject CreateProjectile(Vector3 position, Vector3 target)
-    {
-        var projectile = Instantiate(PrefabFactory.RedFireballPrefab);
-        projectile.transform.position = position;
-
-        var moveScript = projectile.AddComponent<MoveToLocation>();
-        moveScript.MaxSpeed = 1f;
-        moveScript.TargetPosition = target;
-
-        var despawnScript = projectile.AddComponent<DespawnAtLocation>();
-        despawnScript.TargetLocation = target;
-
-        return projectile;
+        var spawn = Instantiate(SpawnObject);
+        spawn.transform.position = randPosition;
+        spawn.transform.SetParent(transform, true);
     }
 
     private static float RandRange(float a, float b)
     {
-        if(a < b)
+        if (a < b)
             return Random.Range(a, b);
         return Random.Range(b, a);
     }
