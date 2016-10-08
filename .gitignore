@@ -2,3 +2,7 @@
 *.pdb
 *.meta
 Temp/
+.vs/
+BattlemageVR.exe
+BattlemageVR_Data/
+2016*

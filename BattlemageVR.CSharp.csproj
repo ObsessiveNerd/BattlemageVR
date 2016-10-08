@@ -66,6 +66,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BattlemageVR\Scripts\MoveScripts\MoveConnect.cs" />
+    <Compile Include="Assets\BattlemageVR\Scripts\MoveScripts\MoveWeaponTracking.cs" />
     <Compile Include="Assets\PSMove\PSEyeImageDisplay.cs" />
     <Compile Include="Assets\PSMove\PSMoveExample.cs" />
     <Compile Include="Assets\PSMove\PSMoveWrapper\MoveController.cs" />

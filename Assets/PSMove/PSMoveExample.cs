@@ -12,7 +12,7 @@ public class PSMoveExample : MonoBehaviour {
 	
 	public bool isMirror = true;
 	
-	public float zOffset = 20;
+	public float zOffset = -20.0f;
 	Quaternion temp = new Quaternion(0,0,0,0);
 	
 	
@@ -43,6 +43,7 @@ public class PSMoveExample : MonoBehaviour {
 			MoveData moveData = PSMoveInput.MoveControllers[0].Data;
 			gemPos = moveData.Position;
 			handlePos = moveData.HandlePosition;
+            Debug.Log(isMirror);
 			if(isMirror) {
 				gem.transform.localPosition = gemPos;
 				handle.transform.localPosition = handlePos;
