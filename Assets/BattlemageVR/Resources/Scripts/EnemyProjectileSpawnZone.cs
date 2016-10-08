@@ -20,19 +20,30 @@ public class EnemyProjectileSpawnZone : MonoBehaviour
     {
         var t = transform;
         var extent = t.localScale / 2;
-        var topForwardRight = t.position + t.up * extent.y / 2 + t.right * extent.x / 2 + t.forward * extent.z;
-        var bottomBackLeft = t.position - t.up * extent.y / 2 - t.right * extent.x / 2 - t.forward * extent.z;
+        var topForwardRight = t.position + t.up * extent.y + t.right * extent.x + t.forward * extent.z;
+        var bottomBackLeft = t.position - t.up * extent.y - t.right * extent.x - t.forward * extent.z;
         var randPosition = new Vector3(
             RandRange(topForwardRight.x, bottomBackLeft.x),
             RandRange(topForwardRight.y, bottomBackLeft.y),
             RandRange(topForwardRight.z, bottomBackLeft.z));
 
+        var projectile = CreateProjectile(randPosition, new Vector3(0, 1, 0));
+        projectile.transform.SetParent(transform, true);
+    }
+
+    private static GameObject CreateProjectile(Vector3 position, Vector3 target)
+    {
         var projectile = Instantiate(PrefabFactory.RedFireballPrefab);
-        projectile.transform.position = randPosition;
+        projectile.transform.position = position;
+
         var moveScript = projectile.AddComponent<MoveToLocation>();
         moveScript.Speed = 1f;
-        moveScript.TargetPosition = new Vector3(0, 1, 0);
-        projectile.transform.SetParent(transform, true);
+        moveScript.TargetPosition = target;
+
+        var despawnScript = projectile.AddComponent<DespawnAtLocation>();
+        despawnScript.TargetLocation = target;
+
+        return projectile;
     }
 
     private static float RandRange(float a, float b)
