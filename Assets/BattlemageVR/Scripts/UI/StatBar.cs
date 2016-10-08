@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class MoveConnect : MonoBehaviour
+public class StatBar : MonoBehaviour
 {
-    public string IpAddress;
-    public int Port;
+    public GameObject BarBackgroundStartPoint;
 
     // Use this for initialization
     void Start()
     {
-        PSMoveInput.Connect(IpAddress, Port);
+        transform.position = BarBackgroundStartPoint.transform.position;
     }
 
     // Update is called once per frame

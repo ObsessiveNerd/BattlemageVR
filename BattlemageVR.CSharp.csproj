@@ -66,8 +66,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BattlemageVR\Scripts\MoveScripts\MoveConnect.cs" />
-    <Compile Include="Assets\BattlemageVR\Scripts\MoveScripts\MoveWeaponTracking.cs" />
+    <Compile Include="Assets\BattlemageVR\Scripts\Player\Health.cs" />
+    <Compile Include="Assets\BattlemageVR\Scripts\Player\Mana.cs" />
+    <Compile Include="Assets\BattlemageVR\Scripts\Player\MeleeWeapon.cs" />
+    <Compile Include="Assets\BattlemageVR\Scripts\PsMove\MoveConnect.cs" />
+    <Compile Include="Assets\BattlemageVR\Scripts\PsMove\MoveWeaponTracking.cs" />
+    <Compile Include="Assets\BattlemageVR\Scripts\Statistics\DamageStatistics.cs" />
+    <Compile Include="Assets\BattlemageVR\Scripts\UI\HealthBar.cs" />
+    <Compile Include="Assets\BattlemageVR\Scripts\UI\ManaBar.cs" />
+    <Compile Include="Assets\BattlemageVR\Scripts\UI\StatBar.cs" />
     <Compile Include="Assets\PSMove\PSEyeImageDisplay.cs" />
     <Compile Include="Assets\PSMove\PSMoveExample.cs" />
     <Compile Include="Assets\PSMove\PSMoveWrapper\MoveController.cs" />
