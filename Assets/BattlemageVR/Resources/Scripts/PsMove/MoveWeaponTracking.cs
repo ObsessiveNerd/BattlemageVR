@@ -6,6 +6,7 @@ public class MoveWeaponTracking : MonoBehaviour
     public GameObject Handle;
     GameObject Player;
     GameObject OvrRig;
+    GameObject BasePlayer;
 
     bool isMirror = false;
 
@@ -13,7 +14,10 @@ public class MoveWeaponTracking : MonoBehaviour
     float playerY;
     float playerZ;
 
+    float yOffsetGem;
+    float yOffsetHandle;
     float zOffset;
+
     Quaternion temp = new Quaternion(0, 0, 0, 0);
 
     bool moveControllerOn = false;
@@ -23,10 +27,11 @@ public class MoveWeaponTracking : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         OvrRig = Player.transform.FindChild("OVRCameraRig").gameObject;
+        BasePlayer = Player.transform.FindChild("BasePlayer").gameObject;
         Handle = transform.FindChild("Handle").gameObject;
-        playerX = OvrRig.transform.position.x;
-        playerY = OvrRig.transform.position.y;
-        playerZ = OvrRig.transform.position.z;
+        playerX = BasePlayer.transform.position.x;
+        playerY = BasePlayer.transform.position.y;
+        playerZ = BasePlayer.transform.position.z;
     }
 
     void FixedUpdate()
@@ -35,14 +40,17 @@ public class MoveWeaponTracking : MonoBehaviour
         {
             if (moveControllerOn == false)
             {
-                zOffset = playerZ +  PSMoveInput.MoveControllers[0].Data.Position.z;
+                
+                zOffset = PSMoveInput.MoveControllers[0].Data.Position.z + playerZ + 1.0f;
+                yOffsetGem = PSMoveInput.MoveControllers[0].Data.Position.y - playerY;
+                yOffsetHandle = PSMoveInput.MoveControllers[0].Data.HandlePosition.y - playerY;
                 moveControllerOn = true;
             }
             Vector3 gemPos, handlePos;
             MoveData moveData = PSMoveInput.MoveControllers[0].Data;
 
-            gemPos = new Vector3(playerX + moveData.Position.x, playerY + moveData.Position.y, Mathf.Clamp(moveData.Position.z, 1.0f, 4.0f));
-            handlePos = new Vector3(playerX + moveData.HandlePosition.x, playerY + moveData.HandlePosition.y, Mathf.Clamp(moveData.HandlePosition.z, 1.0f, 4.0f));
+            gemPos = new Vector3(playerX + moveData.Position.x, (moveData.Position.y - yOffsetGem), moveData.Position.z);
+            handlePos = new Vector3(playerX + moveData.HandlePosition.x, (moveData.HandlePosition.y - yOffsetHandle), moveData.HandlePosition.z);
 
             if (isMirror)
             {
@@ -73,6 +81,10 @@ public class MoveWeaponTracking : MonoBehaviour
                 transform.Rotate(new Vector3(90.0f, 0.0f, 0.0f));
                 transform.Rotate(new Vector3(0.0f, 90.0f, 0.0f));
             }
+        }
+        else
+        {
+            moveControllerOn = false;
         }
     }
 }
