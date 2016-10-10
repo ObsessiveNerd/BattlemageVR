@@ -46,7 +46,6 @@ public class VRHeightOffset : MonoBehaviour
         }
         else if (DebugVR)
         {
-            Debug.Log("Hit");
             transform.Translate(Vector3.up * DefaultOffset);
         }
     }

@@ -75,16 +75,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BattlemageVR\Resources\Scripts\Actor\Health.cs" />
+    <Compile Include="Assets\BattlemageVR\Resources\Scripts\Actor\Mana.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\DespawnAtLocation.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\EnemyProjectileSpawnZone.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\MoveToLocation.cs" />
-    <Compile Include="Assets\BattlemageVR\Resources\Scripts\Player\Health.cs" />
-    <Compile Include="Assets\BattlemageVR\Resources\Scripts\Player\Mana.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\Player\MeleeWeapon.cs" />
+    <Compile Include="Assets\BattlemageVR\Resources\Scripts\Player\SpellDetector.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\PrefabFactory.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\PsMove\MoveConnect.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\PsMove\MoveWeaponTracking.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\SpawnZone.cs" />
+    <Compile Include="Assets\BattlemageVR\Resources\Scripts\Spells\Cast.cs" />
+    <Compile Include="Assets\BattlemageVR\Resources\Scripts\Spells\FollowHand.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\Statistics\DamageStatistics.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\UI\HealthBar.cs" />
     <Compile Include="Assets\BattlemageVR\Resources\Scripts\UI\ManaBar.cs" />
