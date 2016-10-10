@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     public int MaxHealth = 100;
     public int CurrentHealth;
+
+    public Slider healthSlider;
 
     // Use this for initialization
     void Start()
@@ -25,6 +28,8 @@ public class Health : MonoBehaviour
             CurrentHealth = MaxHealth;
         else
             CurrentHealth += healthGained;
+
+        healthSlider.value = CurrentHealth;
     }
 
     public void LoseHealth(int healthLost)
@@ -38,5 +43,7 @@ public class Health : MonoBehaviour
         {
             CurrentHealth -= healthLost;
         }
+
+        healthSlider.value = CurrentHealth;
     }
 }

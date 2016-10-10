@@ -4,6 +4,7 @@ using System.Collections;
 public class Cast : MonoBehaviour
 {
     public float Speed;
+    public int ManaCost;
     Vector3 castDirection;
     public bool casting = false;
 

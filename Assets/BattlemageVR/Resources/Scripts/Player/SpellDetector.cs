@@ -14,10 +14,12 @@ public class SpellDetector : MonoBehaviour
 
     public GameObject Palm;
     GameObject newlyConjuredSpell;
+    Mana playerMana;
+
     // Use this for initialization
     void Start()
     {
-
+        playerMana = GetComponent<Mana>();
     }
 
     // Update is called once per frame
@@ -40,11 +42,10 @@ public class SpellDetector : MonoBehaviour
 
     void CompleteConjuring()
     {
-        GameObject activeSpell = Resources.Load("Prefabs/MagicBall") as GameObject;
+        GameObject activeSpell = Resources.Load("Prefabs/FireBall") as GameObject;
         Vector3 spellPos = Palm.transform.position - (Palm.transform.up * 0.15f);
         newlyConjuredSpell = GameObject.Instantiate(activeSpell, spellPos, Quaternion.identity) as GameObject;
 
-        //Debug.Log("Finished Conjuring!");
         completedConjur = true;
         isConjuring = false;
     }
@@ -55,38 +56,35 @@ public class SpellDetector : MonoBehaviour
         completedConjur = false;
         currentTime = 0.0f;
         startTime = Time.time;
-        //Debug.Log("Started Conjuring!");
     }
 
     public void StopConjuring()
     {
         isConjuring = false;
-        //Debug.Log("Stopped Conjuring!");
     }
 
     public void CastSpell()
     {
         if (completedConjur)
         {
-            //Debug.Log("Cast Spell!");
+            //TODO: Maybe send camera.forward and cast the direction you're looking?
             newlyConjuredSpell.GetComponent<Cast>().CastSpell(-Palm.transform.up);
+            playerMana.LoseMana(newlyConjuredSpell.GetComponent<Cast>().ManaCost);
             completedConjur = false;
         }
         else
         {
-            //Debug.Log("Dry Fire.");
+
         }
     }
 
     public void HandClosed()
     {
-        Debug.Log("Hand Closed");
         handOpen = false;
     }
 
     public void HandOpen()
     {
-        Debug.Log("Hand Open");
         handOpen = true;
     }
 

@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Mana : MonoBehaviour
 {
     public int MaxMana = 100;
     public int CurrentMana;
+    public Slider manaSlider;
 
     // Use this for initialization
     void Start()
@@ -18,6 +20,8 @@ public class Mana : MonoBehaviour
             CurrentMana = MaxMana;
         else
             CurrentMana += manaGained;
+
+        manaSlider.value = CurrentMana;
     }
 
     public void LoseMana(int manaLost)
@@ -30,5 +34,7 @@ public class Mana : MonoBehaviour
         {
             CurrentMana -= manaLost;
         }
+
+        manaSlider.value = CurrentMana;
     }
 }
