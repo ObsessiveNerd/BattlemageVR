@@ -6,6 +6,7 @@ public class MeleeWeapon : MonoBehaviour
     GameObject Player;
     DamageStatistics stats;
     Mana mana;
+    public Camera cam;
 
     void Start()
     {
@@ -16,14 +17,21 @@ public class MeleeWeapon : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Projectile")
+        if(collision.gameObject.tag == "EnemyArcherProjectile")
         {
             DamageStatistics projectileStats = collision.gameObject.GetComponent<DamageStatistics>();
-            mana.GainMana(projectileStats.ManaBoost);
+            mana.GainMana(projectileStats.ManaBoost);   
+            float camZ = cam.transform.forward.normalized.z;
+            Vector3 newArrowVelocity = new Vector3(
+                PSMoveInput.MoveControllers[0].Data.Velocity.normalized.x, 
+                PSMoveInput.MoveControllers[0].Data.Velocity.normalized.y, 
+                camZ) * 10;
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(newArrowVelocity, ForceMode.Impulse);
+            Destroy(collision.gameObject, 3.0f);
         }
-        else if (collision.gameObject.name == "Enemy")
+        else if (collision.gameObject.tag == "Enemy")
         {
-            Health enemyHealth = collision.gameObject.GetComponent<Health>();
+            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
             enemyHealth.LoseHealth(stats.Damage);
         }
     }

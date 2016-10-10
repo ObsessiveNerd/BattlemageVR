@@ -36,7 +36,7 @@ public class EnemyProjectileSpawnZone : MonoBehaviour
         var projectile = Instantiate(PrefabFactory.RedFireballPrefab);
         projectile.transform.position = position;
 
-        var moveScript = projectile.AddComponent<MoveToLocation>();
+        var moveScript = projectile.AddComponent<EnemyProjectileMovement>();
         moveScript.MaxSpeed = 1f;
         moveScript.TargetPosition = target;
 
