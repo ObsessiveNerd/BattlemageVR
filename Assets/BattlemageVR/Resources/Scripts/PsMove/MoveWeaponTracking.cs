@@ -16,7 +16,9 @@ public class MoveWeaponTracking : MonoBehaviour
 
     float yOffsetGem;
     float yOffsetHandle;
-    float zOffset;
+
+    public float zOffset;
+    public float yOffset;
 
     Quaternion temp = new Quaternion(0, 0, 0, 0);
 
@@ -26,7 +28,7 @@ public class MoveWeaponTracking : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player");
-        OvrRig = Player.transform.FindChild("OVRCameraRig").gameObject;
+        OvrRig = Player.transform.FindChild("LMHeadMountedRig").gameObject;
         BasePlayer = Player.transform.FindChild("BasePlayer").gameObject;
         Handle = transform.FindChild("Handle").gameObject;
         playerX = BasePlayer.transform.position.x;
@@ -41,7 +43,7 @@ public class MoveWeaponTracking : MonoBehaviour
             if (moveControllerOn == false)
             {
                 
-                zOffset = PSMoveInput.MoveControllers[0].Data.Position.z + playerZ + 1.0f;
+                zOffset = PSMoveInput.MoveControllers[0].Data.Position.z + playerZ + 3.0f;
                 yOffsetGem = PSMoveInput.MoveControllers[0].Data.Position.y - playerY;
                 yOffsetHandle = PSMoveInput.MoveControllers[0].Data.HandlePosition.y - playerY;
                 moveControllerOn = true;
@@ -49,8 +51,8 @@ public class MoveWeaponTracking : MonoBehaviour
             Vector3 gemPos, handlePos;
             MoveData moveData = PSMoveInput.MoveControllers[0].Data;
 
-            gemPos = new Vector3(playerX + moveData.Position.x, (moveData.Position.y - yOffsetGem), moveData.Position.z);
-            handlePos = new Vector3(playerX + moveData.HandlePosition.x, (moveData.HandlePosition.y - yOffsetHandle), moveData.HandlePosition.z);
+            gemPos = new Vector3(playerX + moveData.Position.x, (moveData.Position.y - yOffsetGem) + yOffset, moveData.Position.z);
+            handlePos = new Vector3(playerX + moveData.HandlePosition.x, (moveData.HandlePosition.y - yOffsetHandle) + yOffset, moveData.HandlePosition.z);
 
             if (isMirror)
             {
